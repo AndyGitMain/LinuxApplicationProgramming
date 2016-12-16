@@ -7,6 +7,25 @@
 
 int main()
 {
+	int fd;
+	int buf;
+	int nRead = 0;
+
+	fd = open("./openData.txt", O_RDONLY);
+	if (fd < 0) {
+		perror("Failed to open a file");
+		exit(-1);
+	}
+
+	while ((nRead = read(fd, (void *)&buf, sizeof(int))) > 0) {
+		printf("Read data : %d\n", buf);
+	}
+
+	close(fd);
+	return 0;
+	
+	
+	/*
 	char buf[BUFF_SIZE] = {""};
 	int fd;
 
@@ -23,4 +42,5 @@ int main()
 	close(fd);
 	
 	return 0;
+	*/
 }
