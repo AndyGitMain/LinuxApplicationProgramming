@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+
 #define FILENAME "./myAddrBook.txt"
 
 struct userInfo {
@@ -37,7 +38,9 @@ int main()
 		printf("==============================\n");
 	}
 
+
+
 	close(fd);
-	
+
 	return 0;
 }
