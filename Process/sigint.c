@@ -13,7 +13,7 @@ int main()
 {
 	int i = 0;
 
-	signal(SIGINT, (void *)sig_handler); /* call sig_hancler function */
+	signal(SIGINT, (void *)sig_handler); /* call sig_handler function */
 
 	/*signal(SIGINT, SIG_IGN);*/	 /* ignore CTRL+C key */
 	
