@@ -1,10 +1,27 @@
 
 
-#include <stdio.h>
 #include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 
-void *t_function(void *data);
+
+void *t_function(void *data)
+{
+	int id;
+	int i = 0;
+
+    //printf("begin with data %d\n", *((int *)data));
+	id = *((int *)data);
+
+	while (1) {
+		printf("%d : %d\n", id, i++);
+		sleep(2);
+	}
+
+}
+
 
 
 int main()
@@ -27,23 +44,11 @@ int main()
 		exit(-1);
 	}
 
-	pthread_join(p_thread[0], (void **)&status);
+	pthread_join(p_thread[0], (void *)&status);
+	pthread_join(p_thread[1], (void *)&status);
 
 	return 0;
 }
 
 
 
-void *t_function(void *data)
-{
-	int id;
-	int i = 0;
-
-	id = *((int *)data);
-
-	while (1) {
-		printf("%d : %d\n", id, i++);
-		sleep(2);
-	}
-
-}
