@@ -17,7 +17,7 @@ int main()
 	int local_num;
 
 
-	/* create a shared memory */
+	/* create the shared memory */
 	shmid = shmget((key_t)skey, sizeof(int), 0666 | IPC_CREAT);
 	if (shmid == -1) {
 		perror("failed to create a shared memory");
@@ -27,7 +27,7 @@ int main()
 	/* check ipc */
 	printf("Key %x\n", skey);
 
-	/* mapping a shared memory */
+	/* mapping a shared memory that is created by a process into memory area*/
 	shared_memory = shmat(shmid, (const void *)0, 0);
 	if (shared_memory == (void *)0) {
 		perror("Failed to map the shared memory");
@@ -36,7 +36,7 @@ int main()
 
 	process_num = (int *)shared_memory;
 
-	for (;;) {
+	while (1) {
 		local_num = 0;
 		fp = popen("ps axh", "r");
 		if (fp != NULL) {
